@@ -1,7 +1,16 @@
 provider "aws" {
-    region = "us-east-2"
+  region = "us-east-2"
 }
 
+terraform {
+  backend "s3" {
+    bucket         = "terraform-up-and-running-tutorial"
+    key            = "stage/services/web-cluster-services/terraform.tfstate"
+    region         = "us-east-2"
+    dynamodb_table = "terraform-up-and-running-locks"
+    encrypt        = true
+  }
+}
 
 module "webserver_cluster" {
     source = "../../../../modules/services/web-cluster-services"

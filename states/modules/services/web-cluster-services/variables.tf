@@ -15,9 +15,8 @@ variable "db_remote_state_bucket" {
 }
 
 variable "db_remote_state_key" {
-  description = "The name to use for all cluster resources"
+  description = "The path for the database's remote state in S3"
   type        = string
-
 }
 
 variable "instance_type" {

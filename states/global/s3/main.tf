@@ -18,7 +18,6 @@ resource "aws_s3_bucket_versioning" "enabled" {
         status = "Enabled"
     }
 
-    depends_on = [aws_s3_bucket.terraform_state]
 }
 
 #Server-side encryption
@@ -67,23 +66,4 @@ output "dynamodb_table_name" {
 
 }
 
-/* isolation in workspaces. Shut down instance when not in use to avoid cost!
- resource "aws_instance" "example"{
-
-ami = "ami-0fb653ca2d3203ac1"
-instance_type = "t2.micro"
-}
-
-#backend config for instance resource
-terraform {
-    backend "s3" {
-    bucket = "terraform-up-and-running-tutorial"
-    key = "workspaces-example/terraform.tfstate"
-    region = "us-east-2"
-    dynamodb_table = "terraform-up-and-running-locks"
-    encrypt = true
-
-    }
-}
-*/
 
