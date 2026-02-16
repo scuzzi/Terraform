@@ -42,6 +42,7 @@ states/
     ├── data-storage/mysql/             #   Prod MySQL instance
     └── services/web-cluster-services/  #   Prod web cluster + autoscaling schedules
 ```
+Folder structure can be created using the folders.ps1 to save you time - modify this to your desired folder structure.
 
 ## Key Concepts Demonstrated
 
