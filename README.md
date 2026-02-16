@@ -1,26 +1,30 @@
+# Terraform Infrastructure as Code Labs
+
+Hands-on labs from *Terraform: Up & Running* by Yevgeniy Brikman (3rd Edition), building a multi-environment AWS infrastructure using Terraform.
+
 ## Architecture Overview
 
 This project deploys a web application stack across two environments (staging and production) with shared global infrastructure.
 
 ```
                     ┌─────────────────────────────┐
-                    │       Global (shared)        │
-                    │  S3 Bucket (state storage)   │
-                    │  DynamoDB (state locking)    │
-                    └──────────────┬───────────────┘
+                    │       Global (shared)       │
+                    │  S3 Bucket (state storage)  │
+                    │  DynamoDB (state locking)   │
+                    └──────────────┬──────────────┘
                                    │
                  ┌─────────────────┴─────────────────┐
                  │                                   │
         ┌────────▼────────┐                 ┌────────▼────────┐
-        │     Staging      │                 │   Production    │
-        │                  │                 │                  │
-        │  MySQL (RDS)     │                 │  MySQL (RDS)     │
-        │  Web Cluster:    │                 │  Web Cluster:    │
-        │   - ALB          │                 │   - ALB          │
-        │   - ASG (2 inst) │                 │   - ASG (2-10)   │
-        │   - t2.micro     │                 │   - t2.small     │
-        │                  │                 │   - Auto-scaling  │
-        └─────────────────┘                 └──────────────────┘
+        │     Staging     │                 │   Production    │
+        │                 │                 │                 │
+        │  MySQL (RDS)    │                 │  MySQL (RDS)    │
+        │  Web Cluster:   │                 │  Web Cluster:   │
+        │   - ALB         │                 │   - ALB         │
+        │   - ASG (2 inst)│                 │   - ASG (2-10)  │
+        │   - t2.micro    │                 │   - t2.small    │
+        │                 │                 │   - Auto-scaling│
+        └─────────────────┘                 └─────────────────┘
 ```
 
 ## Project Structure
